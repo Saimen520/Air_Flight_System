@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <link rel="stylesheet" href="../../helper/Header.css">
+    <title>User Login</title>
+    <style>
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            background-color: white;
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            font-family: Arial, sans-serif;
+        }
+
+        
+        .container {
+            max-width: 400px;
+            margin-top: 80px; /* Space for the header */
+            background: #ffffff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        h1 {
+            color: #0056b3;
+            margin-top: 0;
+        }
+
+        form {
+            margin-top: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        input[type="password"],input[type="text"] {
+            width: calc(100% - 22px);
+            padding: 10px;
+            margin-bottom: 15px;
+            border: none;
+            border-bottom: 1px solid #bebfbf;
+            color: #333;
+            border-radius: 5px;
+        }
+
+        input[type="password"]::placeholder,input[type="text"]::placeholder {
+            color: #bebfbf;
+        }
+
+        input[type="password"]:hover , input[type="text"]:hover{
+            border-bottom: 1.2px solid black;
+            color: #333;
+        }
+
+        input[type="submit"] {
+            background-color: rgba(227, 30, 37,1);
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #004494;
+        }
+        #profilePic
+        {
+            height: 2cm;
+            width: 2cm;
+        }
+        #PassForgot {
+            color: blue;
+            font-size: 12px;
+            text-decoration: none;
+            margin-top: 10px;
+        }
+
+        #PassForgot:hover {
+            color: darkblue;
+            text-decoration: underline;
+        }
+        #togglePassword {
+            position: absolute;
+            right: 10px;
+            
+            top: 41%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: #333;
+            font-size: 18px;
+        }
+        
+    </style>
+    <script>
+        function loadEmailData() {
+            const xhr = new XMLHttpRequest();
+            xhr.open('GET', '../../helper/EmailData.php', true);
+            xhr.onload = function() {
+                if (xhr.status === 200) {
+                    const parser = new DOMParser();
+                    const xmlDoc = parser.parseFromString(xhr.responseText, 'text/xml');
+                    const userEmail = xmlDoc.getElementsByTagName('User_Email')[0]?.textContent || 'Email not found';
+                    document.getElementById('userEmail').textContent = userEmail;
+                } else {
+                    document.getElementById('userEmail').textContent = 'Error loading email';
+                }
+            };
+            xhr.onerror = function() {
+                document.getElementById('userEmail').textContent = 'Request error';
+            };
+            xhr.send();
+        }
+        
+        window.onload = loadEmailData;
+    </script>
+</head>
+<body>
+    <header>
+        <a href="email.html"><img id="logo" src="../../image/logo" alt="Logo"></a>
+        <nav>
+            <ul>
+                <li><a href="Home.php">Home</a></li>
+                <li><a href="BookingFlight.php">Flight</a></li>
+                <li><a href="booking_history.php">Booking History</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="container">
+        <h1>Welcome</h1>
+        <img id="profilePic" src="../../image/profilePic.jpg" alt="profilePic">
+        <p><span id="userEmail">Loading...</span></p>
+        <form method="post" action="../Controller/Logging.php">
+            <label for="textPas">Enter Password:</label>
+            
+            <div style="position: relative;">
+                <input type="password" name="textPas" id="textPas" placeholder="Enter your password" required>
+                <button type="button" id="togglePassword">👁</button>
+            </div>
+            <input type="submit" name="SubBut" id="SubBut" value="Submit">
+
+        </form>
+        <a href="UserForgotPass.html" id="PassForgot">Forgot Password</a>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const togglePasswordButton = document.getElementById('togglePassword');
+           
+            const Password = document.getElementById('textPas');
+            togglePasswordButton.addEventListener('click', () => {
+                if (Password.type === 'password') {
+                    Password.type = 'text';
+                    
+                    togglePasswordButton.textContent = '🙈'; 
+                } else {
+                    Password.type = 'password';
+                    
+                    togglePasswordButton.textContent = '👁️'; 
+                }
+
+            
+           
+           });
+       });
+    </script>
+</body>
+</html>

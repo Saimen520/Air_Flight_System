@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/Project/PHP/PHPProject.php to edit this template
+-->
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title></title>
+        <link rel="stylesheet" href="../../helper/Header.css">
+        <style>
+       html, body {
+                height: 100%;
+                margin: 0;
+                padding: 0;
+                background-color: white;
+            }
+
+            body {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+
+            main {
+                display: flex;
+                justify-content: space-between;
+                width: 100%;
+                height: 100%;
+               
+            }
+
+            .slider-frame {
+                overflow:hidden;
+                width: 50%;
+                height: 100%;
+                background-color: #e31e25;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+
+            @-webkit-keyframes slide_animation {
+                0% {transform: translateX(0%);}
+                10% {transform: translateX(0%);}
+                20% {transform: translateX(-100%);}
+                30% {transform: translateX(-100%);}
+                40% {transform: translateX(-200%);}
+                50% {transform: translateX(-200%);}
+                60% {transform: translateX(-100%);}
+                70% {transform: translateX(-100%);}
+                80% {transform: translateX(0%);}
+                90% {transform: translateX(0%);}
+                100% {transform: translateX(0%);}
+            }
+
+            .slide-images {
+                width: 300%;
+                display: flex;
+                position: relative;
+                -webkit-animation-name: slide_animation;
+                -webkit-animation-duration: 30s;
+                -webkit-animation-iteration-count: infinite;
+                -webkit-animation-direction: alternate;
+                -webkit-animation-play-state: running;
+            }
+
+            .img-container {
+                flex: 0 0 100%;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                text-align: center;
+            }
+
+            .img-container img {
+                width: 250px;
+                height: 250px;
+                display: block;
+                border-radius: 150px 150px 150px 150px;
+            }   
+
+            .userContainer {
+                width: 50%;
+                height: 100%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+            .content{
+                max-width: 400px;
+                color:white;
+            }
+            
+            #BtnSubmit,#txtEmail{
+                width: 11cm;
+                height: 1.38cm;
+                font-family:monospace;
+                font-size: 20px;
+                font-weight: bold;
+                
+            }
+            #BtnSubmit{
+                border: none;
+                background-color: rgba(222, 222, 222, 1);
+                color: rgba(190, 191, 191, 1);
+                
+                border-radius: 5px 5px 5px 5px;
+                
+            }
+
+            .title{
+                font-family:monospace;
+                color:#666666;
+            }
+            #txtEmail{
+                border: none;
+                border-bottom: 1px solid #bebfbf;
+                
+                color:#bebfbf;
+                
+            }
+            #txtEmail::placeholder{
+                color: #bebfbf;
+            }
+            #txtEmail:hover{
+                border-bottom: 1.2px solid black;
+                color: #bebfbf;
+            }
+            .hover-enable:hover{
+               box-shadow: 10px 10px 20px #babecc,
+                   -10px -10px 20px #ffffff;
+            }
+            #SignUpp{
+                font-weight: bold;
+                font-size: 30px;
+            }
+           
+            
+        .modal {
+            display: none; 
+            position: fixed; 
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto; 
+            background-color: rgb(0,0,0); 
+            background-color: rgba(0,0,0,0.4); 
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background-color: white;
+            margin: auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            max-width: 300px;
+            text-align: center;
+            border-radius: 10px;
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .email-text {
+            color: blue; 
+        }
+         .confirm-btn {
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .confirm-btn:hover {
+            background-color: #45a049;
+        }
+   
+      
+    
+        
+      
+
+        
+
+       
+       
+        </style>
+    </head>
+    <body>
+        
+        <header>
+            <a href="email.html"><img id="logo" src="../../image/logo" alt="Logo"></a>
+
+            <nav>
+                <ul>
+                    <li><a href="Home.php">Home</a></li>
+                    <li><a href="BookingFlight.php">Flight</a></li>
+                    <li><a href="booking_history.php">Booking History</a></li>                                     
+                </ul>
+            </nav>
+          
+
+        </header>
+        
+        <main id="content">
+            
+            <div class="slider-frame ">
+                <div class="slide-images">
+                    <div class="img-container">
+                        <img src="https://cdn.airpaz.com/cdn-cgi/image/w=640,h=640,f=webp/forerunner-next/img/illustration/register_large_2.png">
+                        <h2 class="content">Exclusive Offer</h2>
+                        <p class="content">Enjoy early access to exceptional promotions, discounted rates,
+                            and limited-time deals, tailored to your travel preferences. Unlock exclusive offers and save on your next adventure.</p>
+
+                    </div>
+                    <div class="img-container">
+                        <img src="https://cdn.airpaz.com/cdn-cgi/image/w=640,h=640,f=webp/forerunner-next/img/illustration/register_large_1.png">
+                        <h2 class="content">Simplified Booking Process</h2>
+                        <p class="content">With our user-friendly interface and secure payment options, booking has never been easier. 
+                            Streamline your travel experience, save time, and eliminate stress as you prepare for your upcoming adventures.</p>
+                    </div>
+                    <div class="img-container">
+                        <img src="https://cdn.airpaz.com/cdn-cgi/image/w=85,h=85,f=webp/images/illustrations/travelProducts.svg">
+                        <h2 class="content">Find Out Your Journey</h2>
+                        <p class="content">Enjoy your memorable moments with millions of favorable flights and accommodations.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="userContainer">
+                <div class="signUp">
+                    <h2 class="title" id="SignUpp">Sign Up Now</h2>
+                    <form id="signUpForm" method="post" action="../Controller/EmailValidation.php">
+                        <label class="title">Email: </label>
+                        <br>
+                        <input  type="email" id="txtEmail" name="txtEmail" required placeholder="Enter Your Email" >
+                        <br><br>
+                        <input type="submit" value="Continue" id="BtnSubmit" name="BtnSubmit" disabled="true"  >
+                    </form>
+                </div>
+
+
+
+            </div>
+            
+        </main>
+        <div id="myModal" class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <p>Submit Email: <span class="email-text" id="emailDisplay"></span> ?</p>
+                <button class="confirm-btn" id="confirmBtn">Confirm</button>
+            </div>
+        </div>
+     
+     <script>
+         
+        document.addEventListener("DOMContentLoaded", function() {
+            const emailInput = document.getElementById("txtEmail");
+            const submitButton = document.getElementById("BtnSubmit");
+            const content = document.getElementById("content");
+            const valid = document.getElementById("valid");
+             const modal = document.getElementById("myModal");
+            const emailDisplay = document.getElementById("emailDisplay");
+            const span = document.getElementsByClassName("close")[0];
+            emailInput.addEventListener("input", function() {
+                if (emailInput.value.trim() !== "") {
+                    submitButton.disabled = false;
+                    submitButton.classList.add("hover-enable");
+                    submitButton.style.backgroundColor = "rgba(227, 30, 37,1)";
+                    submitButton.style.color = "rgba(255, 255, 255,1)";
+                    
+                } else {
+                    submitButton.disabled = true;
+                    submitButton.style.backgroundColor = "rgba(222, 222, 222,1)";
+                    submitButton.style.color = "rgba(190, 191, 191,1)";
+                    submitButton.classList.remove("hover-enable");
+                }
+            });
+             submitButton.addEventListener("click", function(event) {
+                event.preventDefault(); 
+                emailDisplay.textContent = emailInput.value;
+                modal.style.display = "flex";
+            });
+
+            
+            span.onclick = function() {
+                modal.style.display = "none";
+            };
+
+            
+            window.onclick = function(event) {
+                if (event.target === modal) {
+                    modal.style.display = "none";
+                }
+            };
+        
+             confirmBtn.addEventListener("click", function() {
+               
+                document.getElementById("signUpForm").submit();
+                
+
+              
+                modal.style.display = "none";
+            });
+        });
+        
+    </script>
+    </body>
+</html>

@@ -1,0 +1,32 @@
+<html>
+    <body>
+        <img id="UserLogo" src="../../image/UserLogo.png" alt="Profile Logo">
+        <h2>User Profile</h2>
+        <table border="1">
+            <tr>
+                <th>ID</th><td>2</td>
+            </tr>
+            <tr>
+                <th>Name</th><td>YIHHHAOOO</td>
+            </tr>
+            <tr>
+                <th>IDNumber</th><td>**********11</td>
+            </tr>
+            <tr>
+                <th>Address</th><td>wewewewew</td>
+            </tr>
+            <tr>
+                <th>Birthday Date</th><td>2001-10-12</td>
+            </tr>
+            <tr>
+                <th>Age</th><td>22</td>
+            </tr>
+            <tr>
+                <th>Email</th><td>waikangng12@gmail.com</td>
+            </tr>
+            <tr>
+                <th>Role</th><td>Admin</td>
+            </tr>
+        </table>
+    </body>
+</html>

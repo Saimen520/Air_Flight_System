@@ -1,0 +1,21 @@
+{
+    "require": {
+        "stripe/stripe-php": "^15.9",
+        "phpmailer/phpmailer": "^6.9",
+        "sendgrid/sendgrid": "^8.1"
+    },
+    
+    "autoload": {
+        "psr-4": {
+            "MyNamespace\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Your Name",
+            "email": "your.email@example.com"
+        }
+    ],
+    "minimum-stability": "stable",
+    "license": "MIT"
+}

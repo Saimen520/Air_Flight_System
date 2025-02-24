@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reset Password</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            max-width: 400px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        h2 {
+            margin-top: 0;
+            color: #333;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        input[type="password"],input[type="text"] {
+            width: calc(100% - 50px); 
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            color: #333;
+            position: relative;
+        }
+
+        input[type="password"]::placeholder,input[type="text"]::placeholder {
+            color: #aaa;
+        }
+
+        input[type="submit"] {
+            background-color: #e33c25;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            width: 100%;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #d32f2f;
+        }
+
+        .error {
+            color: red;
+            font-size: 14px;
+            margin-bottom: 15px;
+        }
+
+        
+
+      
+        #togglePassword {
+            position: absolute;
+            right: -10px;
+            
+            top: 41%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: #333;
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Reset Password</h2>
+        <form method="post" action="../Controller/reset_password.php">
+            <input type="hidden" name="token" value="<?php echo htmlspecialchars($token); ?>">
+            <div class="error" id="error-message"></div>
+            <label for="new_password">New Password:</label>
+            <div style="position: relative;">
+                <input type="password" name="new_password" id="new_password" placeholder="Enter new password" required>
+                <button type="button" id="togglePassword">👁</button>
+            </div>
+            <label for="confirm_password">Re-enter Password:</label>
+            <div style="position: relative;">
+                <input type="password" name="confirm_password" id="confirm_password" placeholder="Re-enter new password" required>
+              
+            </div>
+            
+            <input type="submit" value="Reset Password">
+        </form>
+    </div>
+
+    <script>
+     document.addEventListener('DOMContentLoaded', function() {
+            const togglePasswordButton = document.getElementById('togglePassword');
+            const newPassword = document.getElementById('new_password');
+            const confirmPassword = document.getElementById('confirm_password');
+            togglePasswordButton.addEventListener('click', () => {
+                if ((newPassword.type === 'password')||(confirmPassword.type === 'password')) {
+                    newPassword.type = 'text';
+                    confirmPassword.type = 'text';
+                    togglePasswordButton.textContent = '🙈'; 
+                } else {
+                    newPassword.type = 'password';
+                    confirmPassword.type = 'password';
+                    togglePasswordButton.textContent = '👁️'; 
+                }
+
+            
+           
+           });
+        
+
+        document.querySelector('form').addEventListener('submit', function(e) {
+            var password = document.getElementById('new_password').value;
+            var confirmPassword = document.getElementById('confirm_password').value;
+            var errorMessage = document.getElementById('error-message');
+
+            if (password !== confirmPassword) {
+                e.preventDefault();
+                errorMessage.textContent = 'Passwords do not match.';
+            } else if (password.length < 8) {
+                e.preventDefault();
+                errorMessage.textContent = 'Password must be at least 8 characters long.';
+            } else if (!/[a-zA-Z]/.test(password)) {
+                e.preventDefault();
+                errorMessage.textContent = 'Password must contain at least one letter.';
+            } else if (!/\d/.test(password)) {
+                e.preventDefault();
+                errorMessage.textContent = 'Password must contain at least one number.';
+            } else if (!/[@$!%*?&#]/.test(password)) {
+                e.preventDefault();
+                errorMessage.textContent = 'Password must contain at least one special character.';
+            } else {
+                errorMessage.textContent = '';
+            }
+        });
+    });
+    </script>
+</body>
+</html>
